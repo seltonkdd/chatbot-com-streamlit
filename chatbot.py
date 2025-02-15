@@ -10,16 +10,18 @@ llm = ChatGroq(model='llama-3.3-70b-versatile', temperature=0)
 prompt_template = ChatPromptTemplate.from_messages([
         ('system', '''Você é um assistente virtual, ajude o usúario respondendo perguntas. Responda sempre em português.'''),
         MessagesPlaceholder('chat_history', optional=True),
-        MessagesPlaceholder('msgs')
+        ('human', '{last_message}')
     ])
 
 list = []
 
 def call_model(message_input):
 
-    list.append(message_input)
-    prompt = prompt_template.invoke({'msgs': list})
+    list.append({'role': 'user', 'content': message_input})
+    prompt = prompt_template.invoke({'chat_history': list[:-1], 'last_message': message_input})
 
     response = llm.invoke(prompt)
-    return response.content
+    list.append({'role': 'assistant', 'content': response.content})
+
+    return response.content, list
 
