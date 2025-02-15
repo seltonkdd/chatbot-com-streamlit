@@ -15,12 +15,11 @@ prompt_template = ChatPromptTemplate.from_messages([
 
 list = []
 
-def call_model():
+def call_model(message_input):
 
-    message_input = input('\nVocê: ')
     list.append(message_input)
     prompt = prompt_template.invoke({'msgs': list})
 
     response = llm.invoke(prompt)
-    print(response.content)
+    return response.content
 
