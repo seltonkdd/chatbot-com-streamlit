@@ -22,6 +22,7 @@ def call_model(message_input):
 
     response = llm.invoke(prompt)
     list.append({'role': 'assistant', 'content': response.content})
+    print(response)
 
-    return response.content, list
+    return response.content
 
