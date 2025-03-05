@@ -13,6 +13,11 @@ Python 3.9+
 
 Dotenv
 
+#### Clone o projeto
+    git clone "https://github.com/seltonkdd/chatbot-com-streamlit"
+#### Entre na pasta do projeto
+    cd chatbot-com-streamlit
+
 #### Faça a instalação do ambiente virtual via terminal
     python -m venv env
     .\env\Scripts\activate
